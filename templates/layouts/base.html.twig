@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block title %}
+        <title> ЖК Італійський </title>
+    {% endblock %}
+    {% block stylesheets %}
+        <link href="{{ asset('/static/css/index.min.css') }}" rel="stylesheet">
+    {% endblock %}
+    <link rel="icon" href="{{ asset('/static/favicon.ico') }}">
+</head>
+<body>
+{% block preloader %}
+
+{% endblock %}
+{% block header %}
+
+{% endblock %}
+{% block body %}
+
+{% endblock %}
+{% block footer%}
+{% endblock %}}
+{% block javascripts %}
+    <script src="{{asset('/static/js/index.min.js')}}"></script>
+{% endblock %}
+</body>
+</html>
