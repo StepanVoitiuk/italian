@@ -8,8 +8,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
+    const ROLE_USER = 'ROLE_USER';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -23,7 +25,8 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="json")
+     * @var array
+     * @ORM\Column(type="simple_array")
      */
     private $roles = [];
 
@@ -67,7 +70,6 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
@@ -109,5 +111,29 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function serialize()
+    {
+       return serialize([
+           $this->id,
+           $this->email,
+           $this->password
+       ]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->email,
+            $this->password
+            ) = $this->unserialize($serialized);
     }
 }
