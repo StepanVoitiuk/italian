@@ -11,9 +11,7 @@ use App\Repository\SendToCallRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
@@ -61,8 +59,6 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/", name="home")
-     * @param Request $request
-     * @return RedirectResponse|Response
      */
     public function index(Request $request)
     {
@@ -78,7 +74,7 @@ class HomeController extends AbstractController
             $this->manager->persist($contact);
             $this->manager->flush();
 
-            return new RedirectResponse($this->router->generate('home'));
+            return $this->redirect($this->router->generate('home'));
         }
 
         if($form_phone->isSubmitted() && $form_phone->isValid())
@@ -86,14 +82,14 @@ class HomeController extends AbstractController
             $this->manager->persist($phone);
             $this->manager->flush();
 
-            return new RedirectResponse($this->router->generate('home'));
+            return $this->redirect($this->router->generate('home'));
         }
 
-        return new Response( $this->render('home/index.html.twig', [
+        return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'contact'=> $form_contact->createView(),
             'phone'=>$form_phone->createView()
         ])
-        );
+        ;
     }
 }
