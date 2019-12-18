@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface, \Serializable
+class User implements UserInterface /*,\Serializable*/
 {
     const ROLE_USER = 'ROLE_USER';
     const ROLE_ADMIN = 'ROLE_ADMIN';
@@ -70,7 +70,7 @@ class User implements UserInterface, \Serializable
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-
+        $roles = ["ROLE_ADMIN"];
         return array_unique($roles);
     }
 
