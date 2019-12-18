@@ -116,24 +116,24 @@ class User implements UserInterface /*,\Serializable*/
     /**
      * @inheritDoc
      */
-//    public function serialize()
-//    {
-//       return serialize([
-//           $this->id,
-//           $this->email,
-//           $this->password
-//       ]);
-//    }
-//
-//    /**
-//     * @inheritDoc
-//     */
-//    public function unserialize($serialized)
-//    {
-//        list(
-//            $this->id,
-//            $this->email,
-//            $this->password
-//            ) = $this->unserialize($serialized);
-//    }
+    public function serialize()
+    {
+       return serialize([
+           $this->id,
+           $this->email,
+           $this->password
+       ]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->email,
+            $this->password
+            ) = $this->unserialize($serialized);
+    }
 }

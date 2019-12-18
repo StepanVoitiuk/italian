@@ -6,13 +6,14 @@
                 <div class="modal-body">
                     <div class="title">Замовлення дзвінка</div>
                     <div class="subtitle">Введіть ваш номер телефону, ми вам передзвонимо, відповімо на всі питання і детально проконсультуємо.</div>
-                    <form class="form">
+                    {{ form_start(phone) }}
                         <div class="form-wrapper">
-                            <div class="input-container"><input class="input" type="text" placeholder="Ваш телефон" /></div><button class="button" type="submit">
-                                <div class="button-text">Надіслати</div>
-                            </button>
+                            <div class="input-container">
+                                {{form_row(phone.phone_number)}}
+                            </div>
+                            {{ form_row(phone.Send) }}
                         </div>
-                    </form>
+                   {{ form_end(phone) }}
                 </div>
             </div>
         </div>
@@ -154,7 +155,7 @@
     <section class="gallery" name="gallery" id="gallery">
         <div class="container">
             <div class="gallery__wrapper">
-                <div class="gallery__wrapper-left--img accord"><a href="{{asset('static/img/gallery-left-big.png')}}" data-fancybox="gallery"><img class="first-img" src="./static/img/gallery-left.png" alt="gallery-left" /></a></div>
+                <div class="gallery__wrapper-left--img accord"><a href="{{asset('static/img/gallery-left-big.png')}}" data-fancybox="gallery"><img class="first-img" src="{{asset('static/img/gallery-left.png')}}" alt="gallery-left" /></a></div>
                 <div class="gallery__wrapper-desc">
                     <div class="title animate-el-1">Простір для життя без міської метушні</div>
                     <div class="subtitle animate-el-1">Селище в інфраструктурному центрі Боголюб з розкішним парком, штучною водоймою і доріжками для прогулянок.</div>
@@ -267,14 +268,17 @@
         <div class="container">
             <div class="feedback__wrapper">
                 <div class="feedback__wrapper__left">
-                    <form class="form">
+                    {{ form_start(contact) }}
                         <div class="form-wrapper">
-                            <div class="input-container"><input class="input" type="text" placeholder="Ваш телефон" /></div>
-                            <div class="input-container"> <input class="input" type="text" placeholder="Ваше запитання" /></div><button class="button" type="submit">
-                                <div class="button-text">Надіслати</div>
-                            </button>
+                            <div class="input-container">
+                            {{ form_row(contact.email_from) }}
+                            </div>
+                            <div class="input-container">
+                                {{ form_row(contact.text) }}
+                            </div>
+                                {{ form_row(contact.Send) }}
                         </div>
-                    </form>
+                    {{ form_end(contact) }}
                 </div>
                 <div class="feedback__wrapper__right">
                     <div class="title">Зворотній зв’язок</div>

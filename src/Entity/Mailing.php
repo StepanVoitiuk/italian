@@ -17,19 +17,9 @@ class Mailing
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $email_from;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email_to;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $phone_number;
+    private $email_from;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -49,30 +39,6 @@ class Mailing
     public function setEmailFrom(string $email_from): self
     {
         $this->email_from = $email_from;
-
-        return $this;
-    }
-
-    public function getEmailTo(): ?string
-    {
-        return $this->email_to;
-    }
-
-    public function setEmailTo(string $email_to): self
-    {
-        $this->email_to = $email_to;
-
-        return $this;
-    }
-
-    public function getPhoneNumber(): ?string
-    {
-        return $this->phone_number;
-    }
-
-    public function setPhoneNumber(?string $phone_number): self
-    {
-        $this->phone_number = $phone_number;
 
         return $this;
     }
