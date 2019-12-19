@@ -28,11 +28,6 @@
 {% endblock %}
 {% block javascripts %}
     <script src="{{asset('static/js/index.min.js')}}"></script>
-    <script>  document.getElementById('send_to_call_phone_number').addEventListener('input', function (e) {
-            var x = e.target.value.replace(/\D/g, '').match(/(\d{3})(\d{2})(\d{5})/);
-            e.target.value = '+' + '38 ' + '(' + x[1] + ') ' + x[2] + '-' + x[3];
-        });
-    </script>
 {% endblock %}
 </body>
 </html>
