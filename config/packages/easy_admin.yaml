@@ -1,7 +1,7 @@
 easy_admin:
     design:
         menu:
-            - {label: "Entities"}
+            - {label: "Розділи"}
             - label: "Про нас"
               children:
                   - {entity: About, label: "Додати інформацію про нас", icon: "plus", params:{ action: "new"}}
@@ -15,7 +15,7 @@ easy_admin:
               children:
                   - {entity: BuildingStage, label: "Список фото з етапів будівництва", icon: "th-list"}
                   - {entity: BuildingStage, label: "Додати фото з етапу будівництва", icon: "camera", params:{ action: "new"}}
-            - {label: "Settings"}
+            - {label: "Налаштування"}
             - {entity: User, icon: "user"}
     site_name: "ЖК Італійський квартал"
     user:
@@ -42,14 +42,14 @@ easy_admin:
                 actions: ['show', 'edit', 'delete']
                 batch_actions: ['delete']
                 fields: [{property: 'title', label: 'Заголовок'}, {property: 'createdAt', label: 'Створений'}, {property: 'updateAt', label: 'Оновлений'}, {property: 'published', label: 'Опублікований'}, {property: 'nameImage', type: 'image', base_path: '%uploads_path%'} ]
-                filters: ['published']
+                filters: [{property: 'published', label: 'Опублікований'}]
             show:
                 fields:
                     - {property: 'title', label: 'Заголовок'}
                     - {property: 'createdAt', label: 'Створений'}
                     - {property: 'updateAt', label: 'Оновлений'}
                     - {property: 'published', label: 'Опублікований'}
-                    - {property: 'nameImage', type: 'image', base_path: '%uploads_path%'}
+                    - {property: 'nameImage', label: 'Назва малюнку', type: 'image', base_path: '%uploads_path%'}
         Mailing:
             class: App\Entity\Mailing
             label: "Зворотній зв'язок"
@@ -59,6 +59,16 @@ easy_admin:
                 batch_actions: ['delete']
                 fields: [{property: 'id', label: '№ п/п'}, {property: 'Email_from', label: 'Електронна адреса'}, {property: 'Text', label: 'Текст повідомлення'}]
                 sort: ['id', 'Desc']
+            show:
+                fields:
+                    - {property: 'id', label: '№ п/п'}
+                    - {property: 'Email_from', label: 'Електронна адреса'}
+                    - {property: 'Text', label: 'Текст повідомлення'}
+            edit:
+                fields:
+                    - {property: 'Email_from', label: 'Електронна адреса'}
+                    - {property: 'Text', label: 'Текст повідомлення'}
+
         SendToCall:
             class: App\Entity\SendToCall
             label: "Замовлення дзвінків"
@@ -68,6 +78,13 @@ easy_admin:
                 batch_actions: ['delete']
                 fields: [{property: 'id', label: '№ п/п'}, {property: 'phoneNumber', label: 'Номер телефону'}]
                 sort: ['id', 'Desc']
+            show:
+                fields:
+                    - {property: 'id', label: '№ п/п'}
+                    - {property: 'phoneNumber', label: 'Номер телефону'}
+            edit:
+                fields:
+                    - {property: 'phoneNumber', label: 'Номер телефону'}
         User:
             class: App\Entity\User
             label: "Користувач"

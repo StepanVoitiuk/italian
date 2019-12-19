@@ -62,7 +62,7 @@ class HomeController extends AbstractController
         {
             $this->manager->persist($contact);
             $this->manager->flush();
-
+            $this->addFlash('success', 'Ваше повідомлення успішно відправлено');
             return $this->redirect($this->router->generate('home'));
         }
 
@@ -70,7 +70,7 @@ class HomeController extends AbstractController
         {
             $this->manager->persist($phone);
             $this->manager->flush();
-
+            $this->addFlash('success', 'Ваше повідомлення успішно відправлено');
             return $this->redirect($this->router->generate('home'));
         }
 
