@@ -20,8 +20,7 @@ class SendToCall
 
     /**
      * @ORM\Column(type="string", length=20)
-     * @Assert\Length (min = 8, max = 20, minMessage = "min_lenght", maxMessage = "max_lenght")
-     * @Assert\Regex(pattern="/^\+[0-9]{2}\s\([0-5]{3}\)\s[0-9]{2}\-[0-9]{5}/", message="Тільки числа")
+     * @Assert\Regex(pattern="/^\+[0-9]{2}\s[0-9]{3}\s[0-9]{2}\s[0-9]{3}\s[0-9]{2}/")
      */
     private $phone_number;
 

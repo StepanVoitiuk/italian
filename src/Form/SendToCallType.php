@@ -17,7 +17,7 @@ class SendToCallType extends AbstractType
             ->add('phone_number', TextType::class,[
                 'label'=>false,
                 'attr' =>[
-                    'class' => 'input',
+                    'class' => 'input cleave-input',
                     'placeholder' => 'Ваш телефон'
                 ]
             ])
