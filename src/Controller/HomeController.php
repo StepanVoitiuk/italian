@@ -14,15 +14,9 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
-use Twig\Environment;
 
 class HomeController extends AbstractController
 {
-
-    /**
-     * @var Environment
-     */
-    private $twig;
     /**
      * @var MailingRepository
      */
@@ -44,24 +38,19 @@ class HomeController extends AbstractController
      */
     private $callRepository;
 
-    public function __construct(Environment $twig, MailingRepository $mailingRepository,
-                                FormFactoryInterface $formFactory, EntityManagerInterface $manager,
-                                RouterInterface $router, SendToCallRepository $callRepository)
-    {
-        $this->formFactory = $formFactory;
-        $this->twig = $twig;
-        $this->mailingRepository = $mailingRepository;
-        $this->manager = $manager;
-        $this->router = $router;
-        $this->callRepository = $callRepository;
-    }
-
 
     /**
      * @Route("/", name="home")
      */
-    public function index(Request $request)
+    public function index(Request $request, MailingRepository $mailingRepository,
+                          FormFactoryInterface $formFactory, EntityManagerInterface $manager,
+                          RouterInterface $router, SendToCallRepository $callRepository)
     {
+        $this->formFactory = $formFactory;
+        $this->mailingRepository = $mailingRepository;
+        $this->manager = $manager;
+        $this->router = $router;
+        $this->callRepository = $callRepository;
         $contact = new Mailing();
         $phone = new SendToCall();
         $form_contact = $this->formFactory->create(ContactFormType::class, $contact);
