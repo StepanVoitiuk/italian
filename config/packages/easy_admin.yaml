@@ -2,19 +2,19 @@ easy_admin:
     design:
         menu:
             - {label: "Entities"}
-            - label: "About"
+            - label: "Про нас"
               children:
-                  - {entity: About, label: "About add", icon: "plus", params:{ action: "new"}}
-            - label: "Mailing"
+                  - {entity: About, label: "Додати інформацію про нас", icon: "plus", params:{ action: "new"}}
+            - label: "Зворотній зв'язок"
               children:
-                  - {entity: Mailing, label: "Mailing list", icon: "th-list"}
-            - label: "Calling"
+                  - {entity: Mailing, label: "Список листів", icon: "th-list"}
+            - label: "Замовлені дзвінки"
               children:
-                  - {entity: SendToCall, label: "Calling list", icon: "th-list"}
-            - label: "Building Stage"
+                  - {entity: SendToCall, label: "Список дзвінків", icon: "th-list"}
+            - label: "Етапи будівництва"
               children:
-                  - {entity: BuildingStage, label: "List Building stage photo", icon: "th-list"}
-                  - {entity: BuildingStage, label: "Add Building stage photo", icon: "camera", params:{ action: "new"}}
+                  - {entity: BuildingStage, label: "Список фото з етапів будівництва", icon: "th-list"}
+                  - {entity: BuildingStage, label: "Додати фото з етапу будівництва", icon: "camera", params:{ action: "new"}}
             - {label: "Settings"}
             - {entity: User, icon: "user"}
     site_name: "ЖК Італійський квартал"
@@ -24,49 +24,53 @@ easy_admin:
         # List the entity class name you want to manage
         About:
             class: App\Entity\About
-            label: "About"
+            label: "Про нас"
         BuildingStage:
             class: App\Entity\BuildingStage
-            label: "Building stage"
+            label: "Етапи будівництва"
             form:
                 fields:
-                    - title
-                    - createdAt
-                    - updateAt
-                    - published
-                    - {type: 'group', icon: 'img', label: "image" }
-                    - {property: "thumbnailFile", label: "Choose file", type: 'vich_image'}
+                    - {property: 'title', label: 'Заголовок'}
+                    - {property: 'createdAt', label: 'Створений'}
+                    - {property: 'updateAt', label: 'Оновлений'}
+                    - {property: 'published', label: 'Опублікований'}
+                    - {type: 'group', icon: 'img', label: "Фото" }
+                    - {property: "thumbnailFile", label: "Виберіть файл", type: 'vich_image'}
 
             list:
                 collapse_actions: true
                 actions: ['show', 'edit', 'delete']
                 batch_actions: ['delete']
-                fields: ['title', 'createdAt', 'updateAt', 'published', {property: 'nameImage', type: 'image', base_path: '%uploads_path%'} ]
+                fields: [{property: 'title', label: 'Заголовок'}, {property: 'createdAt', label: 'Створений'}, {property: 'updateAt', label: 'Оновлений'}, {property: 'published', label: 'Опублікований'}, {property: 'nameImage', type: 'image', base_path: '%uploads_path%'} ]
                 filters: ['published']
             show:
                 fields:
-                    - title
-                    - createdAt
-                    - updateAt
-                    - published
+                    - {property: 'title', label: 'Заголовок'}
+                    - {property: 'createdAt', label: 'Створений'}
+                    - {property: 'updateAt', label: 'Оновлений'}
+                    - {property: 'published', label: 'Опублікований'}
                     - {property: 'nameImage', type: 'image', base_path: '%uploads_path%'}
         Mailing:
             class: App\Entity\Mailing
-            label: "Mailing"
+            label: "Зворотній зв'язок"
             list:
                 collapse_actions: true
                 actions: ['show', 'edit', 'delete']
                 batch_actions: ['delete']
+                fields: [{property: 'id', label: '№ п/п'}, {property: 'Email_from', label: 'Електронна адреса'}, {property: 'Text', label: 'Текст повідомлення'}]
+                sort: ['id', 'Desc']
         SendToCall:
             class: App\Entity\SendToCall
-            label: "Calling"
+            label: "Замовлення дзвінків"
             list:
                 collapse_actions: true
                 actions: ['show', 'edit', 'delete']
                 batch_actions: ['delete']
+                fields: [{property: 'id', label: '№ п/п'}, {property: 'phoneNumber', label: 'Номер телефону'}]
+                sort: ['id', 'Desc']
         User:
             class: App\Entity\User
-            label: "User"
+            label: "Користувач"
             list:
                 items_permission: 'ROLE_ADMIN'
 
