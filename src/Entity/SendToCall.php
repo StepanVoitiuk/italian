@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SendToCallRepository")
@@ -18,6 +20,7 @@ class SendToCall
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\Regex(pattern="/^\+[0-9]{2}\s[0-9]{3}\s[0-9]{2}\s[0-9]{3}\s[0-9]{2}/")
      */
     private $phone_number;
 
