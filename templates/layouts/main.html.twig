@@ -6,7 +6,7 @@
                 <div class="modal-body">
                     <div class="title">Замовлення дзвінка</div>
                     <div class="subtitle">Введіть ваш номер телефону, ми вам передзвонимо, відповімо на всі питання і детально проконсультуємо.</div>
-                    {{ form_start(phone) }}
+                        {{ form_start(phone) }}
                         <div class="form-wrapper">
                             <div class="input-container">
                                 {{form_row(phone.phone_number)}}
@@ -278,7 +278,7 @@
                             </div>
                                 {{ form_row(contact.Send) }}
                         </div>
-                    {{ form_end(contact) }}
+                    {{form_end(contact) }}
                 </div>
                 <div class="feedback__wrapper__right">
                     <div class="title">Зворотній зв’язок</div>
