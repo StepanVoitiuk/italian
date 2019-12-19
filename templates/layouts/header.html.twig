@@ -72,5 +72,13 @@
                 <li class="mobile-menu-info__nav-link"><span data-scroll="feedback">Зворотній зв’язок </span></li>
             </ul>
         </div>
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="alert alert-{{ type }}">
+                    <button type="button" class="alert-close" data-dismiss="alert" onclick="this.closest('div').style.display='none'">x</button>
+                    {{ message | raw }}
+                </div>
+            {% endfor %}
+        {% endfor %}
     </div>
 </header>
