@@ -58,19 +58,24 @@ class HomeController extends AbstractController
         $form_phone = $this->formFactory->create(SendToCallType::class, $phone);
         $form_phone->handleRequest($request);
 
-        if($form_contact->isSubmitted() && $form_contact->isValid())
+        if($form_contact->isSubmitted())
         {
-            $this->manager->persist($contact);
-            $this->manager->flush();
-            $this->addFlash('success', 'Ваше повідомлення успішно відправлено');
-            return $this->redirect($this->router->generate('home'));
+            if ($form_contact->isValid()) {
+                $this->manager->persist($contact);
+                $this->manager->flush();
+                $this->addFlash('success-all', 'Ваше повідомлення успішно відправлено');
+                return $this->redirect($this->router->generate('home'));
+            }
+            else {
+                $this->addFlash('error-all', 'Некоректно заповнені дані');
+            }
         }
 
         if($form_phone->isSubmitted() && $form_phone->isValid())
         {
             $this->manager->persist($phone);
             $this->manager->flush();
-            $this->addFlash('success', 'Ваше повідомлення успішно відправлено');
+            $this->addFlash('success-all', 'Ваше повідомлення успішно відправлено');
             return $this->redirect($this->router->generate('home'));
         }
 
