@@ -25,6 +25,7 @@ class SendToCallType extends AbstractType
                 'label' => 'Надіслати',
                 'attr' => [
                     'class' => 'button',
+                    'data-callback-btn'=>'data-callback-btn',
                     'type' => 'submit'
                 ]
             ])

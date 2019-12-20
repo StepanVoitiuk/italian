@@ -19,8 +19,10 @@ class SendToCall
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string")
      * @Assert\Regex(pattern="/^\+[0-9]{2}\s[0-9]{3}\s[0-9]{2}\s[0-9]{3}\s[0-9]{2}/")
+     * @Assert\Length(min=17)
+     * @Assert\NotBlank()
      */
     private $phone_number;
 
