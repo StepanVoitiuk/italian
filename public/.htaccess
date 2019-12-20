@@ -1,4 +1,4 @@
-AddHandler application/x-httpd-php71 .php
+AddHandler application/x-httpd-php73 .php
 <filesMatch ".(css|jpg|jpeg|png|gif|js|ico|ttf|svg)$">
     Header set Cache-Control "max-age=2628000, public"
 </filesMatch>
