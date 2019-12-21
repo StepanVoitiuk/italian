@@ -14,6 +14,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
+use App\Helper\MailHelper;
 
 class HomeController extends AbstractController
 {
@@ -37,6 +38,14 @@ class HomeController extends AbstractController
      * @var SendToCallRepository
      */
     private $callRepository;
+    /**
+     * @var MailHelper
+     */
+    private $mailHelper;
+
+    public function __construct()
+    {
+    }
 
 
     /**
@@ -44,13 +53,14 @@ class HomeController extends AbstractController
      */
     public function index(Request $request, MailingRepository $mailingRepository,
                           FormFactoryInterface $formFactory, EntityManagerInterface $manager,
-                          RouterInterface $router, SendToCallRepository $callRepository)
+                          RouterInterface $router, SendToCallRepository $callRepository, MailHelper $mailHelper)
     {
         $this->formFactory = $formFactory;
         $this->mailingRepository = $mailingRepository;
         $this->manager = $manager;
         $this->router = $router;
         $this->callRepository = $callRepository;
+
         $contact = new Mailing();
         $phone = new SendToCall();
         $form_contact = $this->formFactory->create(ContactFormType::class, $contact);
@@ -64,6 +74,9 @@ class HomeController extends AbstractController
                 $this->manager->persist($contact);
                 $this->manager->flush();
                 $this->addFlash('success-all', 'Ваше повідомлення успішно відправлено');
+
+                $mailHelper->sendEmail($contact->getEmailFrom(), 'Дякуємо за ваше звернення', $contact->getText());
+
                 return $this->redirect($this->router->generate('home'));
             }
             else {
