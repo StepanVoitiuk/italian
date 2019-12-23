@@ -8,7 +8,6 @@ easy_admin:
             - label: "Зворотній зв'язок"
               children:
                   - {entity: Mailing, label: "Список листів", icon: "th-list"}
-<<<<<<< HEAD
             - label: "Замовлення дзівнків"
               children:
                   - {entity: SendToCall, label: "Список замовлених дзвінків", icon: "th-list"}
@@ -77,6 +76,7 @@ easy_admin:
                     - {property: 'Text', label: 'Текст повідомлення'}
 
         SendToCall:
+            class: App\Entity\SendToCall
             label: "Замовлення дзвінків"
             list:
                 collapse_actions: true
