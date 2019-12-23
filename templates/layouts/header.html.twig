@@ -76,7 +76,11 @@
             {% for message in messages %}
                 <div class="alert alert-{{ type }}">
                     <button type="button" class="alert-close" data-dismiss="alert" onclick="this.closest('div').style.display='none'">x</button>
+<<<<<<< HEAD
                     {{ message | raw }}
+=======
+                    {{ message }}
+>>>>>>> remotes/origin2/stepanGKItalian
                 </div>
             {% endfor %}
         {% endfor %}
